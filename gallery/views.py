@@ -11,4 +11,11 @@ def image(request, photography_id):
     return render(request, 'gallery/image.html', {'photography': photography})
 
 def search(request):
-    return render(request, 'gallery/search.html')
+    photographys = Photography.objects.order_by('datetime').filter(published=True)
+
+    if 'search' in request.GET:
+        searched_name = request.GET['search']
+        if searched_name:
+            photographys = photographys.filter(name__icontains=searched_name)
+        
+    return render(request, 'gallery/search.html', {'cards' : photographys})
