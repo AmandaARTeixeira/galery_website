@@ -25,7 +25,7 @@ class LoginForm(forms.Form):
         )
     
 class RegisterForm(forms.Form):
-    name_login=forms.CharField(
+    name_register = forms.CharField(
         label='Username', 
         required=True, 
         max_length=100,
