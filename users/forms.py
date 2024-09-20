@@ -11,7 +11,8 @@ class LoginForm(forms.Form):
                'placeholder' : 'Ex: John Wallace'
             }
         )
-        )
+    )
+    
     password = forms.CharField(
         label='Password', 
         required=True, 
@@ -22,7 +23,7 @@ class LoginForm(forms.Form):
                 'placeholder' : 'Type your password'
             }
         )
-        )
+    )
     
 class RegisterForm(forms.Form):
     name_register = forms.CharField(
@@ -35,7 +36,7 @@ class RegisterForm(forms.Form):
                'placeholder' : 'Ex: John Wallace'
             }
         )
-        )
+    )
 
     email = forms.EmailField(
         label='Email', 
@@ -47,7 +48,7 @@ class RegisterForm(forms.Form):
                'placeholder' : 'johnwallace@example.com'
             }
         )
-        ) 
+    ) 
 
     password1 = forms.CharField(
         label='Password', 
@@ -59,7 +60,7 @@ class RegisterForm(forms.Form):
                 'placeholder' : 'Type your password'
             }
         )
-        )  
+    )  
     
     password2 = forms.CharField(
         label='Confirm your password', 
@@ -71,4 +72,4 @@ class RegisterForm(forms.Form):
                 'placeholder' : 'Type your password again'
             }
         )
-        )  
+    )  
