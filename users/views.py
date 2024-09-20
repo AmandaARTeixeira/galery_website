@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from users.forms import LoginForm, RegisterForm
 from django.contrib.auth.models import User
-from django.contrib import auth
+from django.contrib import auth, messages
 
 def login(request):
     form = LoginForm()
@@ -20,8 +20,10 @@ def login(request):
 
             if user is not None:
                 auth.login(request, user)
+                messages.success(request, f'{usr_name} successfully logged in')
                 return redirect('index')
             else:
+                messages.error(request, 'User and/or password incorrect')
                 return redirect('login')
         
     return render(request, 'users/login.html', {'form': form})
@@ -34,6 +36,7 @@ def register(request):
         
         if form.is_valid():
             if form['password1'].value() != form['password2'].value():
+                messages.error(request, 'Passwords are not the same')
                 return redirect('register')
                 
             usr_name = form['name_register'].value()
@@ -41,6 +44,7 @@ def register(request):
             usr_password = form['password1'].value()
 
             if User.objects.filter(username=usr_name).exists():
+                messages.error('This username is not availiable')
                 return redirect('register')
             
             User.objects.create_user(
@@ -49,6 +53,7 @@ def register(request):
                 password=usr_password
             )
 
+            messages.success(request, 'User registered with success')
             return redirect('login')
             
 
