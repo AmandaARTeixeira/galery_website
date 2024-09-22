@@ -73,3 +73,21 @@ class RegisterForm(forms.Form):
             }
         )
     )  
+
+    def clean_name_register(self):
+        name = self.cleaned_data.get('name_register', '').strip()
+
+        if ' ' in name:
+            raise forms.ValidationError('Can\'t have spaces inside username')
+        else:
+            return name
+        
+    def clean_password2(self):
+        password1 = self.cleaned_data.get('password1')
+        password2 = self.cleaned_data.get('password2')
+
+        if password1 and password2:
+            if password1 != password2:
+                raise forms.ValidationError('Passwords do not match')
+            else:
+                return password2

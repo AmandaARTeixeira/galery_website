@@ -34,11 +34,7 @@ def register(request):
     if request.method == 'POST':
         form = RegisterForm(request.POST)
         
-        if form.is_valid():
-            if form['password1'].value() != form['password2'].value():
-                messages.error(request, 'Passwords are not the same')
-                return redirect('register')
-                
+        if form.is_valid():                
             usr_name = form['name_register'].value()
             usr_email = form['email'].value()
             usr_password = form['password1'].value()
