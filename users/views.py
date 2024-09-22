@@ -60,4 +60,6 @@ def register(request):
     return render(request, 'users/register.html', {'form': form})
 
 def logout(request):
-    return render(request, 'users/logout.html')
+    auth.logout(request)
+    messages.success(request, 'User successfully logged out')
+    return redirect('login')
