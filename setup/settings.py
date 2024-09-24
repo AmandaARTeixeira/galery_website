@@ -41,8 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'gallery.apps.GalleryConfig',
-    'users.apps.UsersConfig',
+    'apps.gallery.apps.GalleryConfig',
+    'apps.users.apps.UsersConfig',
 ]
 
 MIDDLEWARE = [
@@ -138,10 +138,11 @@ MEDIA_URL = '/media/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# messages
-
+# Importing the constants for message levels from Django's messages framework
 from django.contrib.messages import constants as messages
+
+# Mapping message levels to Bootstrap CSS classes for styling
 MESSAGE_TAGS = {
-    messages.ERROR: 'danger',
-    messages.SUCCESS: 'sucess'
+    messages.ERROR: 'danger',  # Maps error messages to Bootstrap's danger class
+    messages.SUCCESS: 'success'  # Maps success messages to Bootstrap's success class
 }
