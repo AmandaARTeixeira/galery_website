@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from apps.gallery.models import Photography
 from django.contrib import messages
+from apps.gallery.forms import PhotographyForms
 
 def index(request):
     """
@@ -68,7 +69,27 @@ def search(request):
     return render(request, 'gallery/search.html', {'cards': photographys})
 
 def add_image(request):
-    return render(request, 'gallery/add_image.html')
+    """
+    This view handles the addition of a new image. If the user is not authenticated,
+    they will be redirected to the login page. If the form is submitted via a POST
+    request and is valid, the image will be saved, and the user will be redirected to 
+    the index page with a success message.
+    """
+    if not request.user.is_authenticated:
+        messages.error(request, 'No user logged in')
+        return redirect('login')
+
+    form = PhotographyForms
+
+    if request.method == 'POST':
+        form = PhotographyForms(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'New phograpy added!')
+            return redirect('index')
+
+
+    return render(request, 'gallery/add_image.html', {'form': form})
 
 def edit_image(request):
     return render(request, 'gallery/edit_image.html')

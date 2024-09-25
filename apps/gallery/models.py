@@ -35,7 +35,7 @@ class Photography(models.Model):
     description = models.TextField(null=False, blank=False)  # Detailed description
     photo = models.ImageField(upload_to='photos/%Y/%m/%d/', blank=True)  # Image upload path
     category = models.CharField(max_length=100, choices=OPCOES_CATEGORY, default='')  # Photography category
-    published = models.BooleanField(default=False)  # Publication status
+    published = models.BooleanField(default=True)  # Publication status
     datetime = models.DateTimeField(default=datetime.now, blank=False)  # Creation date and time
     posted_by = models.ForeignKey(to=User, on_delete=models.SET_NULL, null=True, blank=False, related_name='user')  # User who posted
 
