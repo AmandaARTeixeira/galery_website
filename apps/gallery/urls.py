@@ -1,5 +1,5 @@
 from django.urls import path
-from apps.gallery.views import index, image, search
+from apps.gallery.views import index, image, search, add_image, edit_image, delete_image 
 
 """
 URL configuration for the gallery app.
@@ -9,13 +9,11 @@ including the index page, individual photography view, and search functionality.
 """
 
 urlpatterns = [
-    # URL pattern for the index page. Maps to the index view.
     path('', index, name='index'),
-
-    # URL pattern for viewing a specific photography.
-    # The photography_id parameter is captured from the URL as an integer.
     path('image/<int:photography_id>/', image, name='image'),
-
-    # URL pattern for the search page. Maps to the search view.
     path('search/', search, name='search'),
+    path('add-image/', add_image, name='add_image'),
+    path('edit-image/', edit_image, name='edit_image'),
+    path('delete-image/', delete_image, name='delete_image'),
+
 ]
