@@ -1,5 +1,5 @@
 from django.urls import path
-from apps.gallery.views import index, image, search, add_image, edit_image, delete_image 
+from apps.gallery.views import index, image, search, add_image, edit_image, delete_image, filter
 
 """
 URL configuration for the gallery app.
@@ -15,5 +15,5 @@ urlpatterns = [
     path('add-image/', add_image, name='add_image'),
     path('edit-image/<int:photography_id>/', edit_image, name='edit_image'),
     path('delete-image/<int:photography_id>/', delete_image, name='delete_image'),
-    
+    path('filter/<str:category>/', filter, name='filter'),
 ]

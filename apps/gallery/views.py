@@ -113,3 +113,8 @@ def delete_image(request, photography_id):
     messages.success(request, 'Image deleted with success!')
 
     return redirect('index')
+
+def filter(request, category):
+    photographys = Photography.objects.order_by('datetime').filter(published=True, category=category)
+
+    return render(request, 'gallery/index.html', {'cards': photographys})
