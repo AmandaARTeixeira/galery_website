@@ -66,7 +66,7 @@ def search(request):
         if searched_name:
             photographys = photographys.filter(name__icontains=searched_name)
 
-    return render(request, 'gallery/search.html', {'cards': photographys})
+    return render(request, 'gallery/index.html', {'cards': photographys})
 
 def add_image(request):
     """
