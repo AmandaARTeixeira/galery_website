@@ -524,3 +524,18 @@ table {
     -webkit-print-color-adjust: exact;
     color-adjust: exact;
 }
+
+.button-container {
+    display: flex;
+    gap: 10px; /* Adds space between buttons */
+    width: 100%;
+}
+
+.button-container a {
+    flex: 1; /* Ensures the buttons take equal space */
+}
+
+.button-container button {
+    width: 100%; /* Makes buttons fill the entire width of their container */
+    padding-top: 5px;
+}

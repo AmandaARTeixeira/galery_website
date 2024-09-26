@@ -13,7 +13,7 @@ urlpatterns = [
     path('image/<int:photography_id>/', image, name='image'),
     path('search/', search, name='search'),
     path('add-image/', add_image, name='add_image'),
-    path('edit-image/', edit_image, name='edit_image'),
-    path('delete-image/', delete_image, name='delete_image'),
-
+    path('edit-image/<int:photography_id>/', edit_image, name='edit_image'),
+    path('delete-image/<int:photography_id>/', delete_image, name='delete_image'),
+    
 ]

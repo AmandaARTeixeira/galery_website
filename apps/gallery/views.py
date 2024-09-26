@@ -91,8 +91,25 @@ def add_image(request):
 
     return render(request, 'gallery/add_image.html', {'form': form})
 
-def edit_image(request):
-    return render(request, 'gallery/edit_image.html')
+def edit_image(request, photography_id):
+    photography = get_object_or_404(Photography, pk=photography_id)
 
-def delete_image(request):
-    return render(request, 'gallery/delete_image.html')
+    form = PhotographyForms(instance=photography)
+
+    if request.method == 'POST':
+        form = PhotographyForms(request.POST, request.FILES, instance=photography)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Photography updated with success!')
+            return redirect('index')
+
+    return render(request, 'gallery/edit_image.html', {'form': form, 'photography_id' : photography_id})
+
+def delete_image(request, photography_id):
+    photography = get_object_or_404(Photography, pk=photography_id)
+
+    photography.delete()
+
+    messages.success(request, 'Image deleted with success!')
+
+    return redirect('index')

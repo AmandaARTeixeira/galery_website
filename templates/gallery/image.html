@@ -17,6 +17,14 @@
                                 <p class="imagem__texto">{{ photography.description }}</p>
                             </div>
                         </div>
+                        <div class="button-container">
+                            <a href="{% url 'edit_image' photography.id %}">
+                                <button class="btn btn-success">Edit</button>
+                            </a>
+                            <a href="{% url 'delete_image' photography.id %}">
+                                <button class="btn btn-danger">Delete</button>
+                            </a>
+                        </div>
                     </div>
                 </section>
             </section>
